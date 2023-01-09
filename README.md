@@ -1,4 +1,3 @@
-# net-nitnja-webpack
+# net-nitnja-firebas
 
-
-these code was just playing around with webpack
+here iam learning how to use firestore
