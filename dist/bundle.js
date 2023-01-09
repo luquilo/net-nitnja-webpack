@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log('hallo')\n\n//# sourceURL=webpack://branch-two/./src/index.js?");
+eval("const firebaseConfig = {\r\n    apiKey: \"AIzaSyAR-235lsX9cW3RFcvYqMPXsT3C1tU2-NM\",\r\n    authDomain: \"fir-ninja-ede9c.firebaseapp.com\",\r\n    projectId: \"fir-ninja-ede9c\",\r\n    storageBucket: \"fir-ninja-ede9c.appspot.com\",\r\n    messagingSenderId: \"126139096183\",\r\n    appId: \"1:126139096183:web:386b5067f87b3ef8133a72\"\r\n  };\n\n//# sourceURL=webpack://branch-two/./src/index.js?");
 
 /***/ })
 
