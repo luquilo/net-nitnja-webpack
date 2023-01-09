@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import {
-    collection,
-    getDocs,
-    getFirestore
+    collection, getDocs, getFirestore,
+    //used to add a new document and delete to a spesific collection
+    addDoc, deleteDoc, doc
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -35,3 +35,37 @@ getDocs(colRef) //on this snapshot object we have access to all of the document
     .catch(err => {
         console.log(err.message)
     })
+
+// adding documents
+const addBookForm = document.querySelector('.add')
+addBookForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    // addDoc (adding document to the firestore)
+    // the first argument is collection argument
+    // the second arg is an object that represent the new document that we gonna add (coming from front-end) to the particular collection
+    addDoc(colRef, {
+        title: addBookForm.title.value,
+        author: addBookForm.author.value
+    })
+    .then(() => {
+        addBookForm.reset()
+    })
+
+})
+
+const deleteBookForm = document.querySelector('.delete')
+deleteBookForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    // make a document referece using 'doc' function from firebase
+    // take 3 arg, the database, the collection, and the id 
+    const docRef = doc(db, 'books', deleteBookForm.id.value)
+
+    deleteDoc(docRef)
+        .then(() => {
+            deleteBookForm.reset()
+        })
+
+})
+
