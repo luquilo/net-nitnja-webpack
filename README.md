@@ -1,3 +1,3 @@
 # net-nitnja-firebas
 
-here iam learning how to use firestore
+# 5, learning to add and delete data
