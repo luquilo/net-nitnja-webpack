@@ -2,7 +2,9 @@ import { initializeApp } from 'firebase/app'
 import {
     collection, getFirestore,
     //used to add a new document and delete to a spesific collection
-    addDoc, deleteDoc, doc, onSnapshot
+    addDoc, deleteDoc, doc, onSnapshot,
+    query, where
+
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -20,13 +22,17 @@ initializeApp(firebaseConfig)
 // init service
 const db = getFirestore()
 
-// collection ref
+// collection ref => queries reference
 const colRef = collection(db, 'books') 
+
+// query
+// where take 3 arguments 
+const q = query(colRef, where("author", '==', 'penulis ganjil'))
 
 // real time collection data
 // on this snapshot object we have access to all of the document collection
 // the second arg will run initially and every time there is changes in the collection 
-onSnapshot(colRef, (snapshot) => {
+onSnapshot(q, (snapshot) => {
     let books = []
     snapshot.docs.forEach((document) => {
         books.push({ ...document.data(), id: document.id })
