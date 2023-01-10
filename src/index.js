@@ -3,9 +3,8 @@ import {
     collection, getFirestore,
     //used to add a new document and delete to a spesific collection
     addDoc, deleteDoc, doc, onSnapshot,
-    query, where,
-    orderBy, serverTimestamp
-
+    query, where, orderBy, serverTimestamp,
+    getDoc
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -67,12 +66,19 @@ deleteBookForm.addEventListener('submit', (event) => {
 
     // make a document referece using 'doc' function from firebase
     // take 3 arg, the database, the collection, and the id 
-    const docRef = doc(db, 'books', deleteBookForm.id.value)
+    const deleteDocRef = doc(db, 'books', deleteBookForm.id.value)
 
-    deleteDoc(docRef)
+    deleteDoc(deleteDocRef)
         .then(() => {
             deleteBookForm.reset()
         })
 
 })
 
+// get a single document (document reference)
+const docRef = doc(db, 'books', 'rdsgI28WnutL3rMFMvnN')
+
+getDoc(docRef)
+    .then((doc) => {
+        console.log(doc.data(), ' dan ',doc.id)
+    })
