@@ -6,4 +6,4 @@
 
 # 7, firestore queries (filtering / searching some keyword)
 
-# 8, the data is in order of the ID, this time we ordering data by author alphabetical 
+# 8, => the data is in order of the ID, this time we ordering data by author alphabetical and (ordering books by its timestamp) 

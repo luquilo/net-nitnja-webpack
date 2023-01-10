@@ -4,7 +4,7 @@ import {
     //used to add a new document and delete to a spesific collection
     addDoc, deleteDoc, doc, onSnapshot,
     query, where,
-    orderBy
+    orderBy, serverTimestamp
 
 } from 'firebase/firestore'
 
@@ -28,13 +28,13 @@ const colRef = collection(db, 'books')
 
 // query 'where'
 // , where("author", '==', 'penulis ganjil')
-// where take 3 arguments 
-const penulisGanjil = query(colRef, orderBy('title', 'desc'))
+// where take 3 arguments, default is ascending 
+const q = query(colRef, orderBy('createdAt'))
 
 // real time collection data
 // on this snapshot object we have access to all of the document collection
 // the second arg will run initially and every time there is changes in the collection 
-onSnapshot(penulisGanjil, (snapshot) => {
+onSnapshot(q, (snapshot) => {
     let books = []
     snapshot.docs.forEach((document) => {
         books.push({ ...document.data(), id: document.id })
@@ -52,7 +52,8 @@ addBookForm.addEventListener('submit', (event) => {
     // the second arg is an object that represent the new document that we gonna add (coming from front-end) to the particular collection
     addDoc(colRef, {
         title: addBookForm.title.value,
-        author: addBookForm.author.value
+        author: addBookForm.author.value,
+        createdAt: serverTimestamp()
     })
     .then(() => {
         addBookForm.reset()
